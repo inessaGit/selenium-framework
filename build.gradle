@@ -1,0 +1,65 @@
+plugins {
+    id 'application' // 1. run app via CLI 2. bundle app into distro .zip or .tar
+    id 'java'
+    id 'idea'//The IDEA plugin generates files that are used by IntelliJ IDEA,
+    id 'io.qameta.allure' version '2.11.2'// allure is for test reporting ; this plugin adds  gradle integration
+    id 'project-report' //gradle plugin
+}
+//build script block
+repositories {
+    mavenCentral(); //jcenter() deprecated in Gradle 9
+}
+//build script block
+dependencies {
+    implementation group: 'org.testng', name: 'testng', version: '7.5' //used to be named compile
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.21.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.8.1'
+    implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.3.2'
+    //open-source Java lib does the management download, setup, and maintenance) of the drivers required by Selenium WebDriver (e.g., chromedriver, geckodriver, msedgedriver
+    runtimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.5'
+}
+
+group = 'com.priceless.automation'
+version = "1.0.0-RELEASE"
+//jar task using archiveFileName property
+jar.archiveFileName = 'inessa.sample.automation'
+
+
+sourceCompatibility = 1.8 //Java version compatibility to use when compiling Java source.
+test { //test task
+    //useJUnit()
+    useTestNG {
+        suites System.getProperty('suiteXmlFile', 'src/test/resources/testng.xml')
+    }
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
+    finalizedBy 'downloadAllure', 'allureReport'
+    systemProperties System.properties
+}
+
+//configuration for allure plugin
+allure {
+    version = '2.21.0'
+    aspectjweaver = true
+    autoconfigure = true
+}
+
+//This works on   gradle projects that use the java plugin
+//to generate a sources and javadoc jar file for this project
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set ("javadoc")
+    from javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier.set ("sources")
+    from sourceSets.main.allSource
+}
+//build script block ; configures the published artifacts for the project
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+
