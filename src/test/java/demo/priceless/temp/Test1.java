@@ -3,6 +3,7 @@ package demo.priceless.temp;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +18,13 @@ public class Test1 {
 
     @BeforeMethod
     public void testSetUp(){
-        driver  = new ChromeDriver();
+
+        //workaround for bug https://github.com/SeleniumHQ/selenium/issues/11750
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver  = new ChromeDriver(options);
+
+
         baseUrl = "https://www.priceless.com/";
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
@@ -26,6 +33,6 @@ public class Test1 {
     public void testLoadPage(){
 
       driver.get(baseUrl);
-
+      driver.quit();
     }
 }

@@ -6,6 +6,7 @@ build
 
 #Ignore allure-report output
 allure-report
+allure-results 
 =======
 .gradle
 /build/
