@@ -13,7 +13,6 @@ public class TestMobileGoogleSearch extends BaseTest {
 
 	@Test
 	public void testGoogleSearch() {
-
 		GoogleSearch search = new GoogleSearch(DriverManager.getWebDriver()).get();
 		SearchResults results = search.search("educative");
 		results.nextPage();
@@ -21,7 +20,6 @@ public class TestMobileGoogleSearch extends BaseTest {
 
 	@Test
 	public void testGoogleSearchFailure() {
-
 		GoogleSearch search = new GoogleSearch(DriverManager.getWebDriver()).get();
 		search.search("educative");
 		Assert.fail("failing the test to take screenshot");

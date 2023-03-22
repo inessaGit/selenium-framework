@@ -17,8 +17,7 @@ public class TestDropDown extends BaseTest {
 
 		// Create a WebDriver object
 		WebDriver driver = DriverManager.getWebDriver();
-
-		driver.get("http://codetoautomate.com/educative-selenium-demo/");
+		driver.get("https://www.priceless.com/");
 
 		// Create a Javascript executor object.
 		JavascriptExecutor jsDriver = (JavascriptExecutor) driver;

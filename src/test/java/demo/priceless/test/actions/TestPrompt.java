@@ -21,7 +21,7 @@ public class TestPrompt extends BaseTest {
 		WebDriver driver = DriverManager.getWebDriver();
 
 		// open the web URL
-		driver.get("http://codetoautomate.com/educative-selenium-demo/");
+		driver.get("https://www.priceless.com");
 
 		// Click the element to activate the prompt popup
 		driver.findElement(By.id("prompt")).click();

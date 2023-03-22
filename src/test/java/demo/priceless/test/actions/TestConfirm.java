@@ -19,7 +19,7 @@ public class TestConfirm extends BaseTest {
 		WebDriver driver = DriverManager.getWebDriver();
 
 		// open the web URL
-		driver.get("http://codetoautomate.com/educative-selenium-demo/");
+		driver.get("https://www.priceless.com/");
 
 		// Click the element to activate the alert
 		driver.findElement(By.id("confirm")).click();

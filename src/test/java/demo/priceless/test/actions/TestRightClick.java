@@ -17,7 +17,7 @@ public class TestRightClick extends BaseTest {
 		WebDriver driver = DriverManager.getWebDriver();
 
 		// Open the web URL
-		driver.get("http://codetoautomate.com/educative-selenium-demo/");
+		driver.get("https://www.priceless.com");
 
 		WebElement source = driver.findElement(By.id("prompt"));
 		Actions actions = new Actions(driver);

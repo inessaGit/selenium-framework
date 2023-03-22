@@ -1,5 +1,7 @@
 package demo.priceless.utils;
 
+import org.testng.annotations.Test;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -8,19 +10,14 @@ import java.util.List;
 import java.util.Properties;
 
 public class DataManager {
-
 	private static final Properties PROPERTIES = new Properties();
-
 	private static final String ENV = ConfigurationManager.getInstance().getProperty("env");
-
 	private DataManager() throws IOException {
 		PROPERTIES.load(getInputStream("env-test-data.properties"));
 	}
 
 	private static DataManager manager;
-
 	public static DataManager getInstance() {
-
 		if (manager == null) {
 			synchronized (ConfigurationManager.class) {
 				if (manager == null) {
@@ -39,7 +36,6 @@ public class DataManager {
 	}
 
 	private InputStream getInputStream(String file) {
-
 		try {
 			List<URL> urls = Collections.list(Thread.currentThread().getContextClassLoader().getResources(file));
 			return urls == null || urls.isEmpty() ? null : urls.get(0).openStream();
@@ -49,3 +45,4 @@ public class DataManager {
 		return null;
 	}
 }
+

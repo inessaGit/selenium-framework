@@ -13,11 +13,8 @@ public class ConfigurationManager {
 		PROPERTIES.load(getInputStream("default.properties"));
 		PROPERTIES.load(getInputStream("config.properties"));
 	}
-
 	private static ConfigurationManager manager;
-
 	private static final Properties PROPERTIES = new Properties();
-
 	public static ConfigurationManager getInstance() {
 
 		if (manager == null) {

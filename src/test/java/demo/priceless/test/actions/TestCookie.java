@@ -11,27 +11,17 @@ public class TestCookie extends BaseTest {
 
 	@Test
 	public void testACookie() {
-
 		// Create Webdriver instance
 		WebDriver driver = DriverManager.getWebDriver();
-
-		// Open the web URL.
-		driver.get("http://codetoautomate.com/educative-selenium-demo/");
-
+		driver.get("https://www.priceless.com/");
 		// Create and add a new cookie
-		Cookie addCookie = new Cookie("newCookie", "educativeCookie");
+		Cookie addCookie = new Cookie("newCookie", "pricelessCookie");
 		driver.manage().addCookie(addCookie);
-
 		// Get the already set cookie name
 		String getCookieValue = driver.manage().getCookieNamed("newCookie").getValue();
-
 		LOG.info("Cookie Value: " + getCookieValue);
-
-		Assert.assertEquals(getCookieValue, "educativeCookie");
-
-		// Delete the cookie
+		Assert.assertEquals(getCookieValue, "pricelessCookie");
 		driver.manage().deleteCookieNamed("newCookie");
 
 	}
-
 }

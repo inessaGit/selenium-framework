@@ -17,7 +17,7 @@ public class TestRadioButton extends BaseTest {
 		WebDriver driver = DriverManager.getWebDriver();
 
 		// Open the web URL
-		driver.get("http://codetoautomate.com/educative-selenium-demo/");
+		driver.get("https://www.priceless.com");
 
 		String value = "Cricket";
 

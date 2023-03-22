@@ -19,7 +19,7 @@ public class TestMouseOver extends BaseTest {
 		WebDriver driver = DriverManager.getWebDriver();
 
 		// open the web URL
-		driver.get("http://codetoautomate.com/educative-selenium-demo/");
+		driver.get("https://www.priceless.com");
 
 		JavascriptExecutor jsDriver = (JavascriptExecutor) driver;
 
