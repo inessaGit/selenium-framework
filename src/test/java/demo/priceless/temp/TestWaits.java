@@ -34,10 +34,8 @@ public class TestWaits {
         baseUrl = "https://www.priceless.com/";
         driver.manage().timeouts().implicitlyWait( Duration.ofSeconds(10));
         driver.get(baseUrl);
-
         //Implicit wait |WebDriver will wait for a maximum of 30 seconds before moving ahead with the interaction with the element.
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-
     }
 
     @Test

@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import demo.priceless.utils.ConfigurationManager;
+import demo.priceless.webdriver.DriverFactory;
 import demo.priceless.webdriver.DriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -30,23 +31,23 @@ import io.qameta.allure.Attachment;
  * This is the super class of all TestClasses
  */
 public abstract class BaseTest {
-
 	private static final String DEFAULT_BROWSER = ConfigurationManager.getInstance().getProperty("browser");
 	protected static final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
 
 	@BeforeMethod
 	public void setUp(Method method) {
-		if (getWebDriver() == null) {
+		if (DriverManager.getWebDriver() == null) {
 			boolean isMobile = method.getName().toLowerCase().contains("mobile")
 					|| method.getDeclaringClass().getName().toLowerCase().contains("mobile");
-			setWebDriver(createInstance(DEFAULT_BROWSER, isMobile));
+			DriverManager.setWebDriver(DriverFactory.createInstance(DEFAULT_BROWSER, isMobile));
 		}
 	}
 
 	@AfterMethod
 	public void closeDriver(ITestResult result) {
 		if (result.getStatus() == ITestResult.FAILURE || result.getStatus() == ITestResult.SKIP) {
-			takeScreenshot(getWebDriver(), getScreenshotFileName(result));
+			takeScreenshot(DriverManager.getWebDriver(), getScreenshotFileName(result));
+			//attach screenshot to allure report on test failure
 		}
 		DriverManager.closeDriver();
 	}
@@ -72,7 +73,6 @@ public abstract class BaseTest {
 			}
 		}
 	}
-
 	@Attachment(value = "screenshot", type = "image/png", fileExtension = ".png")
 	private byte[] getScreenshot(WebDriver driver) {
 		TakesScreenshot screenshotDriver = (TakesScreenshot) driver;

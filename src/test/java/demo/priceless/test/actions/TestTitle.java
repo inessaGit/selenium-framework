@@ -18,12 +18,11 @@ public class TestTitle extends BaseTest {
 	public void testTitle() {
 		// Create a WebDriver object
 		WebDriver driver = DriverManager.getWebDriver();
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--remote-allow-origins=*");
-
 		driver.get("https://www.priceless.com/sports");
-		// Click the element to activate the alert
-		driver.findElement(By.xpath("//span[text()='FILTER']\")")).click();
+		driver.findElement(By.id("onetrust-accept-btn-handler")).click(); //accept cookies
+
+		//(By.xpath("//span[text()='Log in']"))
+		driver.findElement(By.xpath("//span[text()=' FILTER']")).click();
 		// Wait for the alert to be displayed and switch to the alert popup
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.titleContains("Sports category"));

@@ -19,13 +19,10 @@ import demo.priceless.BaseTest;
 import demo.priceless.webdriver.DriverManager;
 
 public class TestCaptureScreenshot extends BaseTest {
-
-
-	@Test
+	//@Test
 	public void testTakeScreenshotOfWholeWindow() {
 		WebDriver driver = DriverManager.getWebDriver();
 		driver.get("https://www.priceless.com/sports");
-		// take screenshot of the whole window
 		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		File destination = new File("screenshot.png");
 		source.renameTo(destination);
@@ -35,14 +32,14 @@ public class TestCaptureScreenshot extends BaseTest {
 		Assert.assertTrue(destination.length() > 0, "screenshot file size is zero");
 	}
 
-	//@Test
+	@Test
 	public void testTakeScreenshotOfWebElement() {
 		// take screenshot of the WebElement
 		WebDriver driver = DriverManager.getWebDriver();
 		driver.get("https://www.priceless.com/sports");
-		WebElement element = driver.findElement(By.xpath("//h1[text()='Entertainment']"));
+		WebElement element = driver.findElement(By.xpath("//h1[text()='Sports']"));
 		File source = element.getScreenshotAs(OutputType.FILE);
-		File destination = new File("screenshot.png");
+		File destination = new File("test-output/screenshot.png");
 		source.renameTo(destination);
 
 		System.out.println("screenshot saved at " + destination.getAbsolutePath());
