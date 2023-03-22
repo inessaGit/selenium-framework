@@ -4,12 +4,17 @@ import demo.priceless.BaseTest;
 import demo.priceless.webdriver.DriverManager;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
+import org.checkerframework.framework.qual.DefaultQualifier;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-public class AllureScreenshotTest extends BaseTest {
+
+ @Listeners({ demo.priceless.utils.SummaryReport.class })
+
+         public class AllureScreenshotTest extends BaseTest {
    private  WebDriver driver;
     @Attachment(value = "screenshot", type = "image/png", fileExtension = ".png")
     private byte[] allureScreenshot(WebDriver driver) {
@@ -19,7 +24,7 @@ public class AllureScreenshotTest extends BaseTest {
     @Test(description = "Screenshot taken in Step")
     public void screenshotInStepTest() {
         driver = DriverManager.getWebDriver();
-        driver.get("https://www.priceless.com/sports");
+        driver.get("https://www.priceless.com/shopping");
         step1();
         step2();
     }
