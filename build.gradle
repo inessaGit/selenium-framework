@@ -40,10 +40,12 @@ test { //test task
 //configuration for allure plugin
 allure {
     version = '2.21.0'
-    aspectjweaver = true
-    autoconfigure = true
-}
 
+}
+//https://docs.gradle.org/current/dsl/org.gradle.api.tasks.Delete.html
+task deleteLogsScreenshots(type:Delete){
+    delete "allure-results", "logs", "screenshots", "build", "test-output"
+}
 //This works on   gradle projects that use the java plugin
 //to generate a sources and javadoc jar file for this project
 

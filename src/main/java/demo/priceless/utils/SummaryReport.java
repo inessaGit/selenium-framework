@@ -4,20 +4,37 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.List;
 
+import demo.priceless.webdriver.DriverFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.IReporter;
 import org.testng.ISuite;
 import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
 
+/* TO USE THIS CLASS:
+ *Option 1: put this annotation before you class where you define your test methods
+ * @Listeners({ demo.priceless.utils.SummaryReport.class })
+ * Option 2: create a testng.xml and add listeners tag in XML.
+ *
+ */
 public class SummaryReport implements IReporter {
-
+	private static final Logger LOG = LoggerFactory.getLogger(SummaryReport.class);
 	private DecimalFormat decimalFormat = new DecimalFormat("00.##");
 
 	@Override
 	public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
+		outputDirectory="test-output";
+		try {
+			Files.createDirectories(Paths.get(outputDirectory));
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 
 		File file = new File(outputDirectory, "summary.html");
 		try (Writer writer = new FileWriter(file)) {

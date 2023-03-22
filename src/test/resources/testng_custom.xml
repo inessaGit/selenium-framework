@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="UI Test Suite" parallel="classes" thread-count="10">
+	<listeners>
+		<listener class-name="demo.priceless.utils.SummaryReport" />
+	</listeners>
+	<test name="Sample UI Test - Desktop" parallel="classes">
+		<classes>
+		    <class name="demo.priceless.test.actions.TestCaptureScreenshot" />
+		</classes>
+	</test>
+
+	<test name="Sample UI Test - Mobile" parallel="classes">
+		<classes>
+			<class name="demo.priceless.test.TestMobileGoogleSearch" />
+		</classes>
+	</test>
+</suite>  
