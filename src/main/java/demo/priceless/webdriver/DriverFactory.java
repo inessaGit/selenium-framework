@@ -1,5 +1,6 @@
 package demo.priceless.webdriver;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -14,14 +15,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import demo.priceless.utils.ConfigurationManager;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 
 	private static final Logger LOG = LoggerFactory.getLogger(DriverFactory.class);
-
 	private DriverFactory() {
 	}
 
@@ -67,8 +65,8 @@ public class DriverFactory {
 			break;
 		}
 
-		driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
 		driver.manage().window().maximize();
 
 		LOG.info("creating webdriver {}", driver);

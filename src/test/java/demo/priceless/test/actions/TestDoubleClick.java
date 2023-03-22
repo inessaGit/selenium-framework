@@ -22,7 +22,6 @@ public class TestDoubleClick extends BaseTest {
 		// Create a WebDriver object
 		WebDriver driver = DriverManager.getWebDriver();
 		driver.get("https://www.priceless.com/");
-
 		// scroll to the end of the page
 		JavascriptExecutor jsDriver = (JavascriptExecutor) driver;
 		jsDriver.executeScript("document.getElementById('dbl-click').scrollIntoViewIfNeeded()");
@@ -37,7 +36,6 @@ public class TestDoubleClick extends BaseTest {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 		Assert.assertNotNull(alert, "alert on double-click did not appear");
-
 		alert.accept();
 
 	}

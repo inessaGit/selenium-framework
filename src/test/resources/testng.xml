@@ -8,7 +8,7 @@
 
 	<test name="Sample UI Test - Desktop" parallel="classes">
 		<classes>
-		    <class name="demo.priceless.test.actions.TestAlert" />
+		    <class name="demo.priceless.test.actions.TestTitle" />
 		    <class name="demo.priceless.test.actions.TestCaptureScreenshot" />
 		    <class name="demo.priceless.test.actions.TestCheckBox" />
 		    <class name="demo.priceless.test.actions.TestConfirm" />

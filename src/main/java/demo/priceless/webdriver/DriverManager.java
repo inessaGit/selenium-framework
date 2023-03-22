@@ -5,14 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DriverManager {
-
 	protected static final Logger LOG = LoggerFactory.getLogger(DriverManager.class);
-
 	private DriverManager() {
 	}
-
 	private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
-
 	public static WebDriver getWebDriver() {
 		return DRIVER.get();
 	}
